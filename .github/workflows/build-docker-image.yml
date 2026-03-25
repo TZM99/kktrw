@@ -3,12 +3,6 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'Dockerfile'
-      - 'index.js'
-      - 'package.json'
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -39,11 +33,10 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{ github.repository_owner }}/kkrwy:2025latest
+            ghcr.io/tzm99/pyws:latest
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.description=HTTP Server
-            org.opencontainers.image.licenses=MIT
+            org.opencontainers.image.licenses=GPL
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
